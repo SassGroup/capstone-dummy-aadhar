@@ -1,0 +1,9 @@
+micronaut:
+  application:
+    name: dummyAadhar
+  server:
+    host: 0.0.0.0
+    port: 8022
+    cors:
+      enabled: true
+      

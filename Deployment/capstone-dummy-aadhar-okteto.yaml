@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: capstone-dummy-aadhar-deploy
+    labels:
+        app: capstone-dummy-aadhar
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: capstone-dummy-aadhar
+    template:
+        metadata:
+            labels:
+                app: capstone-dummy-aadhar
+        spec:
+            containers:
+            - name: capstone-dummy-aadhar-container
+              image: {image}:v{version}
+              ports:
+              - containerPort: 8022
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: capstone-dummy-aadhar-service ## name of the Service
+spec:
+  type: ClusterIP
+  selector:
+    app: capstone-dummy-aadhar ## Serves as a label which should be refrenced in a Pod / Deployment manifest file
+  ## department: ##same as above
+  ports:
+  - protocol: TCP ##The default is TCP
+    port: 8022
